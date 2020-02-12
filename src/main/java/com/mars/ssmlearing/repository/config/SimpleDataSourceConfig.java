@@ -14,7 +14,7 @@ public class SimpleDataSourceConfig {
 
     @Bean("simpleDataSource")
     public SimpleDriverDataSource simpleDataSource() throws SQLException {
-        return new SimpleDriverDataSource(new Driver(), "jdbc:mysql://172.22.5.5:3306/gear", "tester", "123456");
+        return new SimpleDriverDataSource(new Driver(), "jdbc:mysql://localhost:3306/ssm", "tester", "123456");
     }
 
     @Bean("jdbcTemplate")
