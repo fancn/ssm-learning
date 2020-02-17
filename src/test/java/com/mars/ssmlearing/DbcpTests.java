@@ -1,6 +1,7 @@
 package com.mars.ssmlearing;
 
 import com.mars.ssmlearing.repository.dao.TestDao;
+import com.mars.ssmlearing.repository.model.ProblemDetail;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,6 +21,13 @@ class DbcpTests {
 //        testDao.transactionsBetweenTable();
         testDao.transactionsBetweenDb();
         logger.info("xxx");
+    }
+
+    @Test
+    public void testCache() {
+        ProblemDetail detail = testDao.getProblemDetail(5L);
+        testDao.getProblemDetail(5L);
+        logger.info("end");
     }
 
 }

@@ -1,9 +1,11 @@
 package com.mars.ssmlearing.repository.dao;
 
+import com.mars.ssmlearing.repository.model.ProblemDetail;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,5 +31,18 @@ public class TestDao {
     public void transactionsBetweenDb() {
         jdbcTemplate.update("update ssm.problem_detail set is_feedback=5 where id=5 ");
         jdbcTemplate.update("insert into ssm2.b_table values ((10))");
+    }
+
+    @Cacheable(value = "detail")
+    public ProblemDetail getProblemDetail(Long id) {
+        ProblemDetail detail = jdbcTemplate.queryForObject("select * from ssm.problem_detail where id = " + id, (rs, rowNum) -> {
+            ProblemDetail problemDetail = new ProblemDetail();
+            problemDetail.setId(rs.getLong("id"));
+            problemDetail.setDetail(rs.getString("detail"));
+            return problemDetail;
+        });
+
+        logger.info("getProblemDetail queried");
+        return detail;
     }
 }

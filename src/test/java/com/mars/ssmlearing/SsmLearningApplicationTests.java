@@ -9,12 +9,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 @SpringBootTest
-class SsmLearingApplicationTests {
+class SsmLearningApplicationTests {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private static final Logger logger = LoggerFactory.getLogger(SsmLearingApplicationTests.class);
+    private static final Logger logger = LoggerFactory.getLogger(SsmLearningApplicationTests.class);
 
     @Test
     public void contextLoads() {
